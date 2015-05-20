@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+	<form-beans>
+		<form-bean name="DiCForm"
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="id" type="java.lang.String" />
+			<form-property name="key" type="java.lang.String"/>
+			<form-property name="imei" type="java.lang.String"/>
+			<form-property name="type" type="java.lang.String"/>
+			<form-property name="code" type="java.lang.String"/>
+			<form-property name="password" type="java.lang.String"/>
+			<form-property name="repassword" type="java.lang.String"/>
+			<form-property name="pageNum" type="java.lang.String"/>
+			<form-property name="numPerPage" type="java.lang.String"/>
+			
+			
+		</form-bean>		
+	</form-beans>
+
+	<action-mappings>		
+		<action path="/dic"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			name="DiCForm" parameter="method" scope="request"
+			validate="false">
+			<forward name="index" path="/cglib/index.jsp" />
+			<forward name="indexrerr" path="/cglib/index.jsp" />
+			
+			<forward name="orderdataList" path="/web/orderdata/orderdata_List.jsp" />
+			<forward name="orderListId" path="/web/orderdata/apply_Update.jsp" />
+			<forward name="recordsList" path="/web/orderdata/records_List.jsp" />
+			<forward name="send" path="/buyphone/confirm.jsp" />
+			<forward name="sendWap" path="/wap/confirm.jsp" />
+			
+		</action>		
+	</action-mappings>
+
+</struts-config>

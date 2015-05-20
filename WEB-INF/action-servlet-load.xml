@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+      <bean id="loadRefenceBean" class="com.jmsht.web.util.ReferenceUtil"  singleton="true">
+           <property name="serviceProxy"><ref bean="JmshtServiceProxy"/></property>
+           <property name="serviceId"><value>loadReferenceService</value></property>
+           <property name="methodNames">
+           		<value>loadUnifiedDataQueryListAll,loadUserPssQueryListAll</value>
+           </property>
+           <property name="softHelp"><ref bean="softAop"/></property>
+     </bean>
+</beans>

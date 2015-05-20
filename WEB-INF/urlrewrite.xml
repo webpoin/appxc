@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 3.2//EN"
+        "http://tuckey.org/res/dtds/urlrewrite3.2.dtd">        
+<urlrewrite>
+<!-- 后台登陆系统beg -->
+<rule>  
+   <from>^/web.shtml$</from>
+   <to>/main.do?method=django</to>
+</rule>
+<rule>  
+   <from>^/checkname.shtml$</from>
+   <to>/main.do?method=checkname</to>
+</rule>
+<rule>  
+   <from>^/logout.shtml$</from>
+   <to>/main.do?method=logout</to>
+</rule>
+<rule>  
+   <from>^/main.shtml$</from>
+   <to>/main.do?method=semain</to>
+</rule>
+<!-- 后台登陆系统end -->
+<!-- 获取首页列表-->
+<rule>
+   <from>^/indexlist.xhtml$</from>
+   <to>/dic.do?method=indexList</to>
+</rule>
+<!-- app列表-->
+<rule>
+   <from>^/applist.xhtml$</from>
+   <to>/dic.do?method=appList</to>
+</rule>
+<!-- game列表-->
+<rule>
+   <from>^/gamelist.xhtml$</from>
+   <to>/dic.do?method=gameList</to>
+</rule>
+<!-- app详情列表-->
+<rule>
+   <from>^/appdetails.xhtml$</from>
+   <to>/dic.do?method=appdetailsList</to>
+</rule>
+<!-- banner广告-->
+<rule>
+   <from>^/banner.xhtml$</from>
+   <to>/dic.do?method=bannerList</to>
+</rule>
+<!-- app启动时检测更新 -->
+<rule>  
+   <from>^/applogin.xhtml$</from>
+   <to>/tjix.do?method=applogin</to>
+</rule>
+<!-- 用户登录 -->
+<rule>  
+   <from>^/querylogin.xhtml$</from>
+   <to>/tjix.do?method=login</to>
+</rule>
+<!-- 用户注册 -->
+<rule>  
+   <from>^/register.xhtml$</from>
+   <to>/tjix.do?method=appregister</to>
+</rule>
+<rule>  
+   <from>^/registertoo.xhtml$</from>
+   <to>/tjix.do?method=appregistertoo</to>
+</rule>
+<rule>  
+   <from>^/personaldata.xhtml$</from>
+   <to>/tjix.do?method=appersonaldata</to>
+</rule>
+<!-- 用户找回密码 -->
+<rule>  
+   <from>^/retrievepassword.xhtml$</from>
+   <to>/tjix.do?method=passback</to>
+</rule>
+<rule>  
+   <from>^/resetpass.xhtml$</from>
+   <to>/tjix.do?method=resetpass</to>
+</rule>
+<rule>  
+   <from>^/changepassword.xhtml$</from>
+   <to>/tjix.do?method=changepassword</to>
+</rule>
+
+
+<!-- 手机官网首页 -->
+<rule>  
+   <from>^/index.shtml$</from>
+   <to>/buyphone/index.jsp</to>
+</rule>
+
+<rule>  
+   <from>^/about.shtml$</from>
+   <to>/buyphone/about.jsp</to>
+</rule>
+
+<rule>  
+   <from>^/buy.shtml$</from>
+   <to>/buyphone/buy.jsp</to>
+</rule>
+
+<rule>  
+   <from>^/norm.shtml$</from>
+   <to>/buyphone/norm.jsp</to>
+</rule>
+<rule>  
+   <from>^/product.shtml$</from>
+   <to>/buyphone/product.jsp</to>
+</rule>
+<rule>  
+   <from>^/apps.shtml$</from>
+   <to>/buyphone/apps.jsp</to>
+</rule>
+<rule>  
+   <from>^/pcselect.shtml$</from>
+   <to>/dic.do?method=pcselect</to>
+</rule>
+
+<!--发送订单数据到支付页面 -->
+<rule>  
+   <from>^/send.shtml$</from>
+   <to>/dic.do?method=send</to>
+</rule>
+
+<!-- 易生支付返回的页面-->
+<rule>  
+   <from>^/message.shtml$</from>
+   <to>/buyphone/message.jsp</to>
+</rule>
+
+<!-- 易生支付返回的后台通知.添加我们的订单数据 -->
+<rule>  
+   <from>^/saveorderdata.shtml$</from>
+   <to>/dic.do?method=saveorderdata</to>
+</rule>
+
+
+
+<!-- wap手机官网首页 -->
+<rule>  
+   <from>^/wapindex.shtml$</from>
+   <to>/wap/index.jsp</to>
+</rule>
+
+<rule>  
+   <from>^/wapabout.shtml$</from>
+   <to>/wap/about.jsp</to>
+</rule>
+
+<rule>  
+   <from>^/wapbuy.shtml$</from>
+   <to>/wap/buy.jsp</to>
+</rule>
+
+<rule>  
+   <from>^/wapnorm.shtml$</from>
+   <to>/wap/norm.jsp</to>
+</rule>
+
+<rule>  
+   <from>^/wapapps.shtml$</from>
+   <to>/wap/apps.jsp</to>
+</rule>
+
+<rule>  
+   <from>^/wapproduct.shtml$</from>
+   <to>/wap/product.jsp</to>
+</rule>
+
+
+<rule>  
+   <from>^/wapmessage.shtml$</from>
+   <to>/wap/message.jsp</to>
+</rule>
+
+<rule>  
+   <from>^/select.shtml$</from>
+   <to>/dic.do?method=select</to>
+</rule>
+
+<rule>  
+   <from>^/sendWap.shtml$</from>
+   <to>/dic.do?method=sendWap</to>
+</rule>
+</urlrewrite>
+

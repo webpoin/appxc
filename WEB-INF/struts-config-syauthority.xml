@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+	<form-beans>
+		<form-bean name="authorityForm"
+			type="org.apache.struts.validator.DynaValidatorForm">
+		<form-property name="type" type="java.lang.String" />
+			<form-property name="id" type="java.lang.String" />
+			<form-property name="pageid" type="java.lang.String" />
+			<form-property name="fr" type="java.lang.String" />
+			<form-property name="p" type="java.lang.String" />
+			<form-property name="cid" type="java.lang.String" />
+			<form-property name="url" type="java.lang.String" />	
+			<form-property name="channel" type="java.lang.String"/>
+			<form-property name="key" type="java.lang.String"/>
+			<form-property name="keyword" type="java.lang.String"/>
+			<form-property name="key1" type="java.lang.String"/>
+			<form-property name="key2" type="java.lang.String"/>
+			<form-property name="content" type="java.lang.String" />
+			<form-property name="contact" type="java.lang.String" />
+			<form-property name="name" type="java.lang.String" />
+			<form-property name="a" type="java.lang.String" />
+			<form-property name="stars" type="java.lang.String" />
+			<form-property name="pid" type="java.lang.String" />
+			<form-property name="status" type="java.lang.String" />
+			<form-property name="description" type="java.lang.String" />
+			<form-property name="pageNum"   type="java.lang.String" />
+			<form-property name="numPerPage"   type="java.lang.String" />
+		</form-bean>
+	</form-beans>
+
+	<action-mappings>
+		<action path="/authority"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			name="authorityForm" parameter="method" scope="request" validate="false">
+		<forward name="authoritylist" path="/web/authority/authoritylist.jsp" />
+		<forward name="authority" path="/web/authority/addauthority.jsp" />
+		<forward name="usertoauthlist" path="/web/authority/usertoauthlist.jsp" />
+		</action>
+		
+		
+	</action-mappings>
+</struts-config>

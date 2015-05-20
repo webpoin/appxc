@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean name="/tjix"
+		class="com.jmsht.web.action.TjixCgibiManagerAction" singleton="false">
+		<property name="serviceProxy">
+			<ref bean="JmshtServiceProxy" />
+		</property>
+		<property name="util">
+			<ref bean="loadRefenceBean"/>
+		</property>
+		<property name="serviceId">
+			<value>TjixCgbiDataManager</value>
+		</property>
+		<property name="methodNames">
+			<value></value>
+		</property>
+	</bean>
+</beans>

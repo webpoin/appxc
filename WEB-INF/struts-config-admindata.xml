@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+	<form-beans>
+		<form-bean name="AdminForm"
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="id" type="java.lang.String" />
+			<form-property name="name" type="java.lang.String" />
+			<form-property name="logo" type="org.apache.struts.upload.FormFile" />
+			<form-property name="size" type="java.lang.String" />
+			<form-property name="downloadnumber" type="java.lang.String" />
+			<form-property name="integral" type="java.lang.String" />
+			<form-property name="phrase" type="java.lang.String" />
+			<form-property name="type" type="java.lang.String" />
+			<form-property name="apptype" type="java.lang.String" />
+			<form-property name="version" type="java.lang.String" />	
+			<form-property name="updatedate" type="java.lang.String"/>
+			<form-property name="language" type="java.lang.String"/>
+			<form-property name="pricingmodel" type="java.lang.String"/>
+			<form-property name="promotionfee" type="java.lang.String"/>
+			<form-property name="author" type="java.lang.String"/>
+			<form-property name="introduce" type="java.lang.String"/>
+			<form-property name="label" type="java.lang.String"/>
+			<form-property name="label2" type="java.lang.String"/>
+			<form-property name="label3" type="java.lang.String"/>
+			<form-property name="label4" type="java.lang.String"/>
+			<form-property name="recommended" type="java.lang.String"/>
+			<form-property name="sorting" type="java.lang.String"/>
+			<form-property name="packagename" type="org.apache.struts.upload.FormFile"/>
+			<form-property name="packagepath" type="java.lang.String"/>
+			<form-property name="path" type="java.lang.String"/>
+			<form-property name="image" type="org.apache.struts.upload.FormFile"/>
+			<form-property name="image1" type="org.apache.struts.upload.FormFile"/>
+			<form-property name="image2" type="org.apache.struts.upload.FormFile"/>
+			<form-property name="image3" type="org.apache.struts.upload.FormFile"/>
+			<form-property name="image4" type="org.apache.struts.upload.FormFile"/>
+			<form-property name="image5" type="org.apache.struts.upload.FormFile"/>
+			<form-property name="audit" type="java.lang.String"/>
+			<form-property name="status" type="java.lang.String"/>
+			<form-property name="note" type="java.lang.String"/>
+			<form-property name="channel" type="java.lang.String"/>
+			<form-property name="pageNum" type="java.lang.String" />
+			<form-property name="numPerPage" type="java.lang.String" />
+		</form-bean>		
+	</form-beans>
+
+	<action-mappings>		
+		<action path="/admin"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			name="AdminForm" parameter="method" scope="request"
+			validate="false">
+			<forward name="applist" path="/web/application/applist/app_List.jsp" />
+		</action>		
+	</action-mappings>
+
+</struts-config>

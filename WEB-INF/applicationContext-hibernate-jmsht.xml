@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<bean id="serviceLocator" class="com.jrails.modules.spring.ServiceLocator"/>
+<!--hibernate daoTxManager-->
+    <bean id="JmshtSessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+        <property name="dataSource"><ref bean="JmshtDataSource"/></property>
+        <property name="mappingResources">
+            <list>
+            	<!-- 权限 begin -->
+            	<value>com/jmsht/pojo/MYMenu.hbm.xml</value>
+            	<value>com/jmsht/pojo/Authority.hbm.xml</value>
+            	<value>com/jmsht/pojo/UserToAuth.hbm.xml</value>
+            	<value>com/jmsht/pojo/AuthToMenu.hbm.xml</value>
+            	<value>com/jmsht/pojo/Adminuserinfo.hbm.xml</value>
+            	<!-- 权限end -->
+
+            	<!-- 手机订单数据 -->
+            	<value>com/jmsht/pojo/Orderdata.hbm.xml</value>
+
+            	<value>com/jmsht/pojo/Records.hbm.xml</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <!--<prop key="hibernate.dialect">net.sf.hibernate.dialect.SybaseDialect</prop>-->
+					   <prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
+				       <prop key="hibernate.jdbc.fetch_size">50</prop>
+				       <prop key="hibernate.jdbc.batch_size">30</prop>
+				       <prop key="hibernate.show_sql">false</prop>
+				       <prop key="hibernate.hbm2ddl.auto">validate</prop>
+				       <!--  
+				        create
+						如果数据库中没有表，会根据实体类建表。
+						其中created可以换成validate,update,create-drop
+						validate每次访问都会拿实体类和数据库表进行对比
+						update当表结构发生变化的时候，会更新数据库表
+						create-drop在显式关闭SessionFactory的时候，会删掉这个表
+               		  <prop key="hibernate.hbm2ddl.auto">validate</prop>-->
+               		  <!-- 使用二级缓存和查询缓存，提高性能
+               		  <prop key="hibernate.cache.use_query_cache">true</prop>
+    				  <prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop> -->
+            </props>
+        </property>
+    </bean>
+    <bean id="JmshtTransactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory"><ref bean="JmshtSessionFactory"/></property>
+    </bean>
+    <bean id="JmshtTxProxyTemplate" abstract="true"
+        class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager"><ref bean="JmshtTransactionManager"/></property>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="save*">PROPAGATION_REQUIRED</prop>
+                <prop key="update*">PROPAGATION_REQUIRED</prop>
+                <prop key="remove*">PROPAGATION_REQUIRED</prop>
+                <prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+            </props>
+        </property>
+    </bean>
+	
+    <bean id="JmshtSimpleDao" class="com.d3.bi.appcommon.dao.hibernate.SimpleHbnDaoImpl">
+        <property name="sessionFactory"><ref bean="JmshtSessionFactory"/></property>
+    </bean>
+    
+    <bean id="JmshtJdbcTemplateDao" class="com.d3.bi.appcommon.dao.jdbc.JdbcTemplateDaoImpl">
+        <property name="dataSource"><ref bean="JmshtDataSource"/></property>
+    </bean>
+    <bean id="JmshtDao" class="com.jmsht.dao.impl.JmshtImpl">
+        <property name="dataSource"><ref bean="JmshtDataSource"/></property>
+    </bean>
+    <!--  
+	<bean id="wapSpDAO" class="com.d3.bi.appcommon.dao.SpDAOImpl"  singleton="false">
+        <property name="dataSource"><ref bean="DiChingDataSource"/></property>
+		<property name="sp_name"><value>P_UserSetScoreRank</value></property>
+		<property name="inParameter"><value>StatType</value></property>
+    </bean>
+    -->
+    <!-- 系统缓存模块 -->
+    <bean id="loadReferenceService" parent="JmshtTxProxyTemplate">
+        <property name="target">
+            <bean class="com.jmsht.service.impl.LoadReferenceServiceImpl">
+                <property name="dao"><ref bean="JmshtSimpleDao"/></property>
+                <property name="jtdao"><ref bean="JmshtJdbcTemplateDao"/></property>
+            </bean>
+        </property>
+    </bean>  
+    
+    <bean id="DiCManager" class="com.jmsht.service.impl.DiCManagerImpl">
+       	<property name="dao"><ref bean="JmshtSimpleDao"/></property>
+		<property name="jtdao"><ref bean="JmshtJdbcTemplateDao"/></property>
+		<property name="didao"><ref bean="JmshtDao"/></property>
+    </bean>
+       <!--后台数据管理 -->
+     <bean id="AdminDataManager" parent="JmshtTxProxyTemplate">
+    	<property name="target">
+    		<bean class="com.jmsht.service.impl.AdminDataManagerImpl">
+    			<property name="dao"><ref bean="JmshtSimpleDao"/></property>
+				<property name="jtdao"><ref bean="JmshtJdbcTemplateDao"/></property>
+				<property name="didao"><ref bean="JmshtDao"/></property>
+    		</bean>
+    	</property>
+    </bean>
+    <!--用户管理-->
+      <bean id="TjixCgbiDataManager" parent="JmshtTxProxyTemplate">
+    	<property name="target">
+    		<bean class="com.jmsht.service.impl.TjixCgibiManagerImpl">
+    			<property name="dao"><ref bean="JmshtSimpleDao"/></property>
+				<property name="jtdao"><ref bean="JmshtJdbcTemplateDao"/></property>
+				<property name="didao"><ref bean="JmshtDao"/></property>
+    		</bean>
+    	</property>
+    </bean>
+	<!--后台控制模块-->
+	<bean id="SyWebInfoManager" parent="JmshtTxProxyTemplate">
+        <property name="target">
+            <bean class="com.jmsht.service.impl.SyWebInfoManagerImpl">
+                <property name="dao"><ref bean="JmshtSimpleDao"/></property>
+				<property name="jtdao"><ref bean="JmshtJdbcTemplateDao"/></property>
+            </bean>
+        </property>
+    </bean>
+      <!--后台权限菜单模块 -->
+     <bean id="SyMYMenuManager" parent="JmshtTxProxyTemplate">
+    	<property name="target">
+    		<bean class="com.jmsht.service.impl.SyMYMenuManagerImpl">
+    			<property name="dao"><ref bean="JmshtSimpleDao"/></property>
+				<property name="jtdao"><ref bean="JmshtJdbcTemplateDao"/></property>
+				<property name="didao"><ref bean="JmshtDao"/></property>
+    		</bean>
+    	</property>
+    </bean>
+    <!--后台权限模块 -->
+     <bean id="SyAuthorityManager" parent="JmshtTxProxyTemplate">
+    	<property name="target">
+    		<bean class="com.jmsht.service.impl.SyAuthorityManagerImpl">
+    			<property name="dao"><ref bean="JmshtSimpleDao"/></property>
+				<property name="jtdao"><ref bean="JmshtJdbcTemplateDao"/></property>
+				<property name="didao"><ref bean="JmshtDao"/></property>
+    		</bean>
+    	</property>
+    </bean>
+</beans>

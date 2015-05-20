@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+	<form-beans>
+		<form-bean name="TjixForm"
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="id" type="java.lang.String" />
+			<form-property name="imei" type="java.lang.String" />
+			<form-property name="version" type="java.lang.String" />
+			<form-property name="channel" type="java.lang.String" />
+			<form-property name="system" type="java.lang.String" />
+			<form-property name="mobiles" type="java.lang.String" />
+			<form-property name="key" type="java.lang.String" />
+			<form-property name="mac" type="java.lang.String" />
+			<form-property name="keypassword" type="java.lang.String" />
+			<form-property name="gender" type="java.lang.String" />
+
+			<form-property name="phone" type="java.lang.String" />
+			<form-property name="username" type="java.lang.String" />
+			<form-property name="password" type="java.lang.String" />
+			<form-property name="type" type="java.lang.String" />
+			<form-property name="typename" type="java.lang.String" />
+			<form-property name="state" type="java.lang.String" />
+			<form-property name="statename" type="java.lang.String" />
+			<form-property name="regdate" type="java.util.Date" />
+		</form-bean>
+	</form-beans>
+
+	<action-mappings>
+		<action path="/tjix"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			name="TjixForm" parameter="method" scope="request"
+			validate="false">
+			<forward name="one181list" path="/web/tjix/one181list.jsp" />
+		</action>
+	</action-mappings>
+
+</struts-config>

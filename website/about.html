@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<title>安子便民支付</title>
+	<link rel="stylesheet" href="/website/css/style.css">
+	<!--[if lt IE 8]><script src="/website/js/ie67.js"></script><![endif]-->
+</head>
+<body>
+
+	<div class="header">
+		<a href="/website/index.html" class="head_logo"><img src="/website/images/head_logo.png" alt=""></a>
+		<ul class="head_link">
+			<li><a href="/website/channel.html">产品中心</a></li>
+			<li><a href="/website/join.html">合作加盟</a></li>
+			<li><a href="/website/news.html">新闻资讯</a></li>
+			<li class="active"><a href="/website/about.html">关于我们</a></li>
+			<li><a href="/website/boss.html">总裁致辞</a></li>
+			<li><b>旗下网站</b>
+				<cite>
+					<a target="_blank" href="http://cf.anzimall.com">创富系统</a>
+					<a target="_blank" href="http://www.anzimall.com">安淘惠商城</a>
+					<a target="_blank" href="http://union.anzimall.com">异业联盟</a>
+					<a target="_blank" href="http://card.anzipay.com">安子预付卡</a>
+					<a target="_blank" href="http://119.254.69.98:8090/agentmgr/">分销管理</a>
+					<a target="_blank" href="http://www.anziapp.com">安子支付软件</a>
+				</cite>
+			</li>
+		</ul>
+	</div>
+
+
+	<div class="banner">
+		<ul>
+			<li><img src="/website/images/banner_5.jpg" alt=""></li>
+		</ul>
+	</div>
+
+	
+	<div class="main about">
+		<h2>公司简介</h2>
+		<p> 深圳安子便民支付科技有限公司（简称“安子支付”）成立于2004年11月19日，注册资金1亿元，隶属于深圳市安子科技股份有限公司，注册于深圳前海，性质为合资经营企业，是专业从事电子金融专业服务的公司，是国内领先的创新型第三方移动支付品牌企业。 安子支付是集移动金融终端产品的研发、生产、销售、商务平台对接、 金融平台清算、金融业务咨询等，以及投资、担保，培训，传媒等为一体的现代化综合性金融服务业运营商，产业涉及金融行业多个领域，业务范围覆盖全国。 公司依托专业化的管理团队、科学化的经营模式、先进的科技创新理念，将逐步打造成为国内一流的专业化、规范化、系统化、标准化的综合性金融服务运营企；致力于金融创新，积极参与银行卡受理环境建设，以数字货币为业务发展核心，依托金融系统清算平台，贴近企业的业务运作和人们生活的各个方面提供全方位的电子化金融服务环境，服务基本涵盖除现金及线上支付以外 的所有支付领域，为国内持卡客户创造安全、便捷的移动支付务，带动国内金融行业的蓬勃发展，为社会大众提供便利，致力成为国内最具专业的电子金融服务商。</p>
+
+		<div class="map" id="map" style="height: 300px;margin:50px 60px 0 0"></div>
+
+		<h2>在线反馈</h2>
+		<form action="#" class="fukrm">
+			<br><br>
+			<cite><span>姓 名</span><input type="text" name="" placeholder="请输入您的姓名" value=""></cite>
+			<cite><span>邮 箱</span><input type="text" name="" placeholder="请输入您的邮箱地址" value=""></cite>
+			<cite><span>手 机</span><input type="text" name="" placeholder="请输入您的手机号码" value=""></cite>
+			<cite><span>内 容</span><textarea placeholder="请输入您想对我们说的......"></textarea></cite>
+			<cite><span></span><input type="submit" value="提交"></cite>
+		</form>
+
+		
+	</div>
+
+
+
+	<div class="sidebar">
+		<h2 style="border:none;">客服</h2>
+		<a href="" class="btn">4008-119-789</a>
+		<h3>电话</h3>
+		<p><strong>0755-3301 6895</strong><br><strong>0755-3301 6986</strong></p>
+		<h3>地址</h3>
+		<p>深圳市宝安区中粮地产大厦22楼</p>
+		<br><br><br><br>
+		<div class="line"></div>
+	</div>
+
+
+
+	<div class="footer">
+		<p>
+			<a id='___szfw_logo___' href='https://search.szfw.org/cert/l/CX20131204003310003382' target='_blank'><img src='https://search.szfw.org/cert.png?l=CX20131204003310003382'></a>
+		</p>
+		<p>
+			备案号粤ICP备13079336号 <br>
+			Copyright @ 2015 安子支付 版权所有
+		</p>
+	</div>
+
+	<script src="/website/js/global.js"></script>
+
+	<script type="text/javascript">
+
+
+		function loadJScript() {
+			var script = document.createElement("script");
+			script.type = "text/javascript";
+			script.src = "http://api.map.baidu.com/api?v=2.0&ak=6MnMg2PV1zdUKf99lHPmfduG&callback=init";
+			document.body.appendChild(script);
+		}
+
+
+		function init() {
+
+
+			var map = new BMap.Map("map");    // 创建Map实例
+			var point = new BMap.Point( 113.914894,22.562684); //中点
+			map.centerAndZoom(point, 13);  // 初始化地图,设置中心点坐标和地图级别
+			map.addControl(new BMap.MapTypeControl());   //添加地图类型控件
+			map.addControl(new BMap.ScaleControl({anchor: BMAP_ANCHOR_TOP_LEFT}));
+			map.addControl(new BMap.NavigationControl()); 
+			map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+
+			marker = new BMap.Marker(point);
+			map.addOverlay(marker);
+			marker.openInfoWindow(new BMap.InfoWindow('<h3 style="padding-right:50px;"><a href="#">深圳安子便民支付科技有限公司</a></h3><p>地址：深圳市宝安三区中粮地产大厦22楼<br/>电话：0755-3301 6895 </p>'));
+		}  
+
+
+
+		window.onload = loadJScript;  //异步加载地图
+		
+
+	</script>
+</body>
+</html>
